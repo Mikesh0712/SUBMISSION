@@ -23,6 +23,7 @@ JavaScript
 
 No external libraries or crypto APIs used
 🔐 Encryption Techniques Used
+
 ✅ AES-like (XOR-Based)
 Each character in the message is encrypted using a key via bitwise XOR operations, simulating block-based symmetric encryption.
 
