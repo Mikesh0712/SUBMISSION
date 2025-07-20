@@ -1,35 +1,25 @@
-🔐 SecureText Encryptor – Pure JavaScript (Custom RSA, AES, DES)
-This project demonstrates customized encryption techniques built entirely with HTML, CSS, and JavaScript, without using any cryptographic APIs or external libraries. It simulates the logic behind RSA, AES, and DES encryption.
+# 🔐 Cipher Tool - Encrypt & Decrypt Text
 
--------------------------------------------------------------------------------------------------------------------
+A simple, responsive web app to **encrypt** and **decrypt** text using simulated versions of:
+- AES-like (XOR logic)
+- DES-like (Character shifting)
+- RSA-like (Modular math)
 
-📌 Project Overview
-SecureText Encryptor allows users to:
+## 🚀 Features
+- 🔄 Encrypt/Decrypt toggle via dropdown
+- 🧠 Auto-clears output on action change
+- 📱 Responsive & user-friendly UI
+- 🔒 Works with AES, DES, RSA logic
 
-Choose between three encryption types: *AES-like, **DES-like, and *RSA-like
-Enter any text and encrypt/decrypt it
-Work completely offline and run in any modern browsers.
+## 📂 Files
+- `index.html` – UI layout
+- `style.css` – Styling & responsiveness
+- `script.js` – Encryption logic & UX handling
 
--------------------------------------------------------------------
-🔧 Technologies Used
+## 📌 Usage
+1. Enter your text.
+2. Choose algorithm + Encrypt/Decrypt from dropdown.
+3. (For AES/DES) Enter a key.
+4. Output appears in a separate box.
 
-HTML5
-
-CSS3
-
-JavaScript
-
-------------------------------------------------------------------------
-
-No external libraries or crypto APIs used
-🔐 Encryption Techniques Used
-
-✅ AES-like (XOR-Based)
-Each character in the message is encrypted using a key via bitwise XOR operations, simulating block-based symmetric encryption.
-
-✅ DES-like (Caesar Cipher Based)
-Characters are shifted based on the key length, representing a basic symmetric substitution encryption style.
-
-✅ RSA-like (Modular Math)
-Simulates asymmetric encryption using small fixed primes and modular exponentiation to encrypt and decrypt characters individually.
-
+> Switching dropdown clears previous outpuT.
