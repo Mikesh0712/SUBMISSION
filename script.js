@@ -1,4 +1,3 @@
-
 // AES
 function aesLikeEncrypt(text, key) {
   let encrypted = '';
@@ -50,43 +49,48 @@ function rsaLikeDecrypt(cipher) {
   }).join('');
 }
 
-// UI Control
-async function encrypt() {
-  const algo = document.getElementById("algo").value;
-  const text = document.getElementById("inputText").value;
-  const key = document.getElementById("keyInput").value;
+// Main logic
+const inputText = document.getElementById("inputText");
+const keyInput = document.getElementById("keyInput");
+const algoSelect = document.getElementById("algo");
+const modeSelect = document.getElementById("mode");
+const outputBox = document.getElementById("outputBox");
 
-  let result = "";
+algoSelect.addEventListener("change", clearOutput);
+modeSelect.addEventListener("change", handleAction);
+inputText.addEventListener("input", () => {
+  if (modeSelect.value) handleAction();
+});
 
-  if (algo === "aes") {
-    if (!key) return alert("Key required for AES-like");
-    result = aesLikeEncrypt(text, key);
-  } else if (algo === "des") {
-    if (!key) return alert("Key required for DES-like");
-    result = desLikeEncrypt(text, key);
-  } else if (algo === "rsa") {
-    result = rsaLikeEncrypt(text);
-  }
-
-  document.getElementById("outputText").value = result;
+function clearOutput() {
+  outputBox.textContent = "";
 }
 
-async function decrypt() {
-  const algo = document.getElementById("algo").value;
-  const text = document.getElementById("outputText").value;
-  const key = document.getElementById("keyInput").value;
+function handleAction() {
+  const algo = algoSelect.value;
+  const mode = modeSelect.value;
+  const text = inputText.value.trim();
+  const key = keyInput.value.trim();
+
+  if (!algo || !mode || !text) {
+    outputBox.textContent = "";
+    return;
+  }
 
   let result = "";
 
-  if (algo === "aes") {
-    if (!key) return alert("Key required for AES-like");
-    result = aesLikeDecrypt(text, key);
-  } else if (algo === "des") {
-    if (!key) return alert("Key required for DES-like");
-    result = desLikeDecrypt(text, key);
-  } else if (algo === "rsa") {
-    result = rsaLikeDecrypt(text);
+  try {
+    if (algo === "aes") {
+      if (!key) return alert("Key required for AES-like");
+      result = mode === "encrypt" ? aesLikeEncrypt(text, key) : aesLikeDecrypt(text, key);
+    } else if (algo === "des") {
+      if (!key) return alert("Key required for DES-like");
+      result = mode === "encrypt" ? desLikeEncrypt(text, key) : desLikeDecrypt(text, key);
+    } else if (algo === "rsa") {
+      result = mode === "encrypt" ? rsaLikeEncrypt(text) : rsaLikeDecrypt(text);
+    }
+    outputBox.textContent = (mode === "encrypt" ? "🔒 Encrypted:\n" : "🔓 Decrypted:\n") + result;
+  } catch (e) {
+    outputBox.textContent = "❌ Error: Invalid input or key.";
   }
-
-  document.getElementById("inputText").value = result;
 }
