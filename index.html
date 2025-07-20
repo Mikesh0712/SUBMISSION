@@ -16,18 +16,20 @@
       <option value="rsa">RSA-like</option>
     </select>
 
+    <label for="mode">Choose Mode:</label>
+    <select id="mode">
+      <option value="">-- Select --</option>
+      <option value="encrypt">Encrypt</option>
+      <option value="decrypt">Decrypt</option>
+    </select>
+
     <input type="text" id="keyInput" placeholder="Enter key (Not needed for RSA)" />
 
     <textarea id="inputText" placeholder="Enter your message..."></textarea>
 
-    <div class="buttons">
-      <button onclick="encrypt()">Encrypt</button>
-      <button onclick="decrypt()">Decrypt</button>
-    </div>
-
-    <textarea id="outputText" placeholder="Encrypted/Decrypted result..." readonly></textarea>
+    <div id="outputBox" class="output-box"></div>
   </div>
 
-  <script src="SCRIPT.JS"></script>
+  <script src="script.js"></script>
 </body>
 </html>
